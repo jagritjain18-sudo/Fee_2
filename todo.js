@@ -1,3 +1,92 @@
+// (function (){
+//     let todos=[];
+    
+//     const todocontainer=document.getElementById("todo");
+//     const todoinput=document.createElement("input");
+//     todoinput.type="text";
+//     todoinput.placeholder="Enter task...";
+//     const addbtn=document.createElement("button");
+//     addbtn.textContent="ADD";
+//     const todolist=document.createElement("div");
+//     todolist.style.border="2px solid black";
+//     todocontainer.append(todoinput,addbtn,todolist);
+
+//     function rendertask(task){
+//         const todoitem=document.createElement("div");
+//         todoitem.style.border="2px solid red";
+//         todoitem.style.margin="10px";
+
+//         const p=document.createElement("p");
+//         p.textContent=task;
+
+//         const deletebtn=document.createElement("button");
+//         deletebtn.textContent="Delete";
+
+//         const editbtn=document.createElement("button");
+//         editbtn.textContent="Edit";
+
+//         const complete=document.createElement("button");
+//         complete.textContent="Complete";   
+
+//         editbtn.addEventListener("click",function(){
+//             const editinput=document.createElement("input");
+//             editinput.value=task;
+//             const savebtn=document.createElement("button");
+//             savebtn.textContent="Save";
+//             todoitem.prepend(editinput,savebtn);
+//             editinput.focus();
+
+//             savebtn.addEventListener("click",function(){
+//                 const updatedtask=editinput.value;
+//                 if(!updatedtask){
+//                     return;
+//                 }
+//                 p.textContent=updatedtask;
+//                 const index=todos.indexOf(task);
+//                 todos[index]=updatedtask;
+//                 editinput.remove();
+//                 savebtn.remove();
+//                 todoitem.style.backgroundColor="white";
+//                 todoitem.style.border="2px solid red";
+//                 console.log(todos);
+//             });
+//         });
+
+//         deletebtn.addEventListener("click",function(){
+//             const index=todos.indexOf(task);
+//             todos.splice(index,1);
+//             todoitem.remove();
+//         });
+
+//         complete.addEventListener("click",function(){
+//             todoitem.style.border="2px solid green"; 
+//             todoitem.style.backgroundColor="green";
+//             complete.remove();
+//         });
+
+//         todoitem.append(p,deletebtn,editbtn,complete);
+//         todolist.prepend(todoitem);
+//     }
+
+//     function addtodo(){
+//         const task=todoinput.value.trim();
+//         if(!task){
+//             return;
+//         }
+//         todos.unshift(task);
+//         rendertask(task);
+//         todoinput.value="";
+//         todoinput.focus();
+//     }
+
+//     addbtn.addEventListener("click",addtodo);
+//     todoinput.addEventListener("keydown",function(e){
+//         if(e.key==="Enter"){
+//             addtodo();
+//         }
+//     });
+
+// })();
 (function () {
     let todos = JSON.parse(localStorage.getItem("todos")) || [];
     let id = Number(localStorage.getItem("id")) || 0;
@@ -48,8 +137,12 @@
             transform: scale(1.05);
             opacity: 0.9;
         }
-        #todo button:nth-of-type(1) { background: #1e90ff; color: white; }
-        #todo button:nth-of-type(2) { background: #ff4500; color: white; }
+
+        /* Button colors */
+        #todo button:nth-of-type(1) { background: #1e90ff; color: white; } /* ADD */
+        #todo button:nth-of-type(2) { background: #ff4500; color: white; } /* Search */
+
+        /* Task cards */
         #todo div > div {
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(6px);
