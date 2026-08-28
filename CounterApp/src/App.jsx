@@ -75,7 +75,7 @@ const handleClick = (action)=>{
     <>
     <div className='bg-black w-full h-vh flex flex-col items-center justify-center'>
       <h1 className='text-white font-bold text-6xl text-center'>COUNTER APP</h1>
-      <div className='bg-slate-700 w-300  h-55 flex items-center justify-center flex-col rounded-4xl m-12'>
+      <div className='bg-slate-700 w-300  h-68 flex items-center justify-center flex-col rounded-4xl m-12'>
         <h3 className="text-9xl font-bold text-white text-center ">{count}</h3>
          <p className='text-slate-400 text-lg mt-2 text-center '>Current Count</p>
       </div> 
