@@ -8,7 +8,7 @@ function Home() {
     <div className="flex flex-col items-center justify-center min-h-[70vh] font-sans p-8">
       <header className="text-center bg-slate-50 border border-slate-100 p-12 rounded-2xl shadow-sm max-w-2xl w-full mb-10">
         <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          Welcome to Our QuickShop! 
+          Welcome to Our Shop! 
         </h1>
         <p className="text-lg text-slate-600">
           Discover amazing products at unbeatable prices.
