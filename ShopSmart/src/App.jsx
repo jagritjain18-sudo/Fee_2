@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import ProductCard from './ProductCard';
+import { useDispatch } from 'react-redux';
+import { setProducts } from './ProductsSlice';
+import Product from './Product';
+import Navbar from './Navbar';
 
 function App() {
-  const [product, setProduct] = useState([]);
+  const dispatch=useDispatch();
+  //const [product, setProduct] = useState([]);
+  
   const [filter, setFilter] = useState('');
   const [name, setName] = useState('');
   const [debounce, setDebounce] = useState('');
@@ -21,26 +28,38 @@ function App() {
     fetch(`https://dummyjson.com/products/search?q=${debounce}`)
       .then((res) => res.json())
       .then((data) => {
-        setProduct(data.products );
+        dispatch(setProducts(data.products ));
         console.log(data.products);
       });
   }, [debounce]);
 
-  const filteredProducts = product.filter((p) =>
-    p.category.toLowerCase().includes(filter.toLowerCase().trim())
-  );
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === 'price-asc') return a.price - b.price;
-    if (sortBy === 'price-desc') return b.price - a.price;
-    if (sortBy === 'rating-desc') return b.rating - a.rating; 
+  //const filteredProducts = product.filter((p) =>
+   // p.category.toLowerCase().includes(filter.toLowerCase().trim())
+  //);
+  // const sortedProducts = [...filteredProducts].sort((a, b) => {
+  //   if (sortBy === 'price-asc') return a.price - b.price;
+  //   if (sortBy === 'price-desc') return b.price - a.price;
+  //   if (sortBy === 'rating-desc') return b.rating - a.rating; 
     
-    return 0; 
-  });
+    //return 0; 
+ // });
  function add(){
   setCount(count+1);
  }
   return (
     <>
+    <Navbar/>
+    <Product/>
+    {/* <Product/>
+    <div className='mb-200'>
+      <ProductCard
+      title={product[0]?.title}
+      src={product[0]?.thumbnail}
+      price={product[0]?.price}
+      description={product[0]?.description}
+      rating={product[0]?.rating}
+      />
+    </div>
       <h1>Shop Smart</h1>
 
    <h1>Products in Cart {count}</h1>
@@ -60,7 +79,7 @@ function App() {
             <button onClick={add} className='border'>Add to cart</button>
           </li>
         ))}
-      </ol>
+      </ol> */}
     </>
   );
 }
