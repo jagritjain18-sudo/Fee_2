@@ -19,10 +19,13 @@ const initialState ={
         },
         setCategoryFilter:(state,action)=>{
             state.categoryFilter=action.payload;
+        },
+        setQuery:(state,action)=>{
+            state.query=action.payload;
         }
 
     }
 })
 
-export const {setProducts,setSortBy, setCategoryFilter}=ProductsSlice.actions;
+export const {setProducts,setSortBy, setCategoryFilter,setQuery}=ProductsSlice.actions;
 export default ProductsSlice.reducer;
