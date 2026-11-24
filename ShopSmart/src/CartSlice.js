@@ -19,14 +19,24 @@ const CartSlice = createSlice({
                 exist.quantity+=1;
             }else{
                 state.items.push({
-                    id: product.id,
-                    title: product.title,
-                    price: product.price,
-                    thumbnail: product.thumbnail,
+                    id: pro.id,
+                    title: pro.title,
+                    price: pro.price,
+                    thumbnail: pro.thumbnail,
                     quantity: 1,
                   });
             }
         },
+        increaseQuantity: (state, action) => {
+            const id = action.payload;
+            const exist = state.items.find((i) => i.id === id);
+            if (!exist) return;
+          
+            exist.quantity += 1;
+            state.totalQuantity += 1;
+            state.totalPrice = Number((state.totalPrice + exist.price));
+          },
+          
         decreaseQuantity:(state,action)=>{
             const id=action.payload;
             const exist=state.items.find((i)=>i.id===id);
@@ -61,5 +71,5 @@ const CartSlice = createSlice({
     }
 })
 
-export const {addToCart,decreaseQuantity,clearCart,removeFromCart}= CartSlice.actions;
+export const {addToCart,decreaseQuantity,clearCart,removeFromCart,increaseQuantity}= CartSlice.actions;
 export default CartSlice.reducer;

@@ -1,9 +1,10 @@
 import React from 'react'
-import { useSelector} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import ProductCard from './ProductCard';
+import { addToCart } from './CartSlice';
 const Product = () => {
     const { items, sortBy, categoryFilter } = useSelector((state) => state.product);
-
+    const dispatch=useDispatch()
   const filteredProducts = items.filter((p) =>
     p.category.toLowerCase().includes(categoryFilter.toLowerCase().trim())
   );
@@ -25,7 +26,9 @@ const Product = () => {
           src={p?.thumbnail}
           price={p?.price}
           description={p?.description}
-          rating={p?.rating}></ProductCard>
+          rating={p?.rating}
+          onAddToCart={()=>dispatch(addToCart(p))}
+          ></ProductCard>
         )
     })};
     </div>    

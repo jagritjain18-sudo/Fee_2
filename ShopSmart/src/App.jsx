@@ -5,6 +5,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { setProducts } from './ProductsSlice';
 import Product from './Product';
 import Navbar from './Navbar';
+import Cart from "./Cart";
 
 function App() {
   const dispatch=useDispatch();
@@ -29,7 +30,7 @@ function App() {
     <>
     <Navbar/>
     <Product/>
-    
+    <Cart/>
     </>
   );
 }
