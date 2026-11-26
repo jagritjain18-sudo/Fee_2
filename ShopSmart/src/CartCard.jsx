@@ -6,14 +6,14 @@ import { removeFromCart,increaseQuantity,decreaseQuantity,clearCart } from './Ca
 const CartCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cartItems = useSelector((state) => state.cart.items);
+  const {items:cartItems,totalPrice}= useSelector((state) => state.cart);
   console.log(cartItems)
   if (cartItems.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
         <h2 className="text-3xl font-bold text-gray-800">Your cart is empty!</h2>
         <button 
-          onClick={() => navigate('/product')} 
+          onClick={() => navigate('/')} 
           className="px-6 py-3 font-bold text-white bg-blue-600 rounded-xl shadow-md hover:bg-blue-700 active:scale-95 transition-all"
         >
           Go Shopping
@@ -77,6 +77,9 @@ const CartCard = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div>
+        <h1>Total Price {totalPrice}</h1>
       </div>
       <button 
           onClick={() => dispatch(clearCart())}

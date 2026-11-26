@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setSortBy, setCategoryFilter, setQuery } from './ProductsSlice';
 import {ShoppingCart} from "lucide-react"
-
+import { Link } from 'react-router-dom';
 const CATEGORIES = [
   'beauty',
   'fragrances',
@@ -22,7 +22,9 @@ const Navbar = () => {
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-blue-600 shadow">
-      <h1 className="text-2xl font-bold text-white">ShopSmart</h1>
+       <Link to="/" className="text-2xl font-bold text-white">
+        ShopSmart
+      </Link>
 
       <div className="flex flex-wrap items-center gap-3">
         <input type="text" value={searchText} placeholder="Search Product" onChange={(e) => setSearchText(e.target.value)}
@@ -47,7 +49,9 @@ const Navbar = () => {
           <option value="price-desc">Price: High to Low</option>
           <option value="rating-desc">Top Rated</option>
         </select>
+        <Link to='/cart'>
         <ShoppingCart size={30} strokeWidth={2.5} color='white' />
+        </Link>
       </div>
     </div>
   );

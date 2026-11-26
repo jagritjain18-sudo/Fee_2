@@ -5,6 +5,7 @@ const initialState ={
     query:'',
     categoryFilter:'',
     sortBy:'',
+    skip:0
 
 }
  const ProductsSlice = createSlice({
@@ -19,13 +20,23 @@ const initialState ={
         },
         setCategoryFilter:(state,action)=>{
             state.categoryFilter=action.payload;
+            state.skip=0;
         },
         setQuery:(state,action)=>{
             state.query=action.payload;
+            state.skip=0;
+        },
+        next:(state)=>{
+            state.skip+=12;
+        },
+        previous:(state)=>{
+            if(state.skip>=12){
+                state.skip-=12;
+            }
         }
 
     }
 })
 
-export const {setProducts,setSortBy, setCategoryFilter,setQuery}=ProductsSlice.actions;
+export const {setProducts,setSortBy, setCategoryFilter,setQuery,next,previous}=ProductsSlice.actions;
 export default ProductsSlice.reducer;

@@ -6,21 +6,21 @@ import { setProducts } from './ProductsSlice';
 import Product from './Product';
 import Navbar from './Navbar';
 import Cart from "./Cart";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   const dispatch=useDispatch();
-  const { query} = useSelector((state) => state.product);
+  const { query,skip} = useSelector((state) => state.product);
   const [debounce, setDebounce] = useState('');
   const [count,setCount]=useState(0);
   
   useEffect(() => {
-    fetch(`https://dummyjson.com/products/search?q=${query}&limit=12&skip=0`)
+    fetch(`https://dummyjson.com/products/search?q=${query}&limit=12&skip=${skip}`)
       .then((res) => res.json())
       .then((data) => {
         dispatch(setProducts(data.products ));
-        console.log(data.products);
       });
-  }, [query]);
+  }, [query,skip]);
 
 
  function add(){
@@ -28,9 +28,12 @@ function App() {
  }
   return (
     <>
-    <Navbar/>
-    <Product/>
-    <Cart/>
+ 
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
     </>
   );
 }

@@ -2,8 +2,10 @@ import React from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import ProductCard from './ProductCard';
 import { addToCart } from './CartSlice';
+import { previous,next } from './ProductsSlice';
+import Navbar from './Navbar';
 const Product = () => {
-    const { items, sortBy, categoryFilter } = useSelector((state) => state.product);
+    const { items, sortBy, categoryFilter,skip } = useSelector((state) => state.product);
     const dispatch=useDispatch()
   const filteredProducts = items.filter((p) =>
     p.category.toLowerCase().includes(categoryFilter.toLowerCase().trim())
@@ -31,6 +33,10 @@ const Product = () => {
           ></ProductCard>
         )
     })};
+    <div className='flex flex-wrap items-center gap-8 mb-5'>
+      <button className='border rounded-lg px-3 py-2 text-sm bg-white ' onClick={()=>dispatch(previous())} disabled={skip==0}>Previous</button>
+      <button className='border rounded-lg px-3 py-2 text-sm bg-white' onClick={()=>dispatch(next())}>Next</button>
+    </div>
     </div>    
     </>
   )

@@ -4,7 +4,6 @@ import CartCard from './CartCard'
 const Cart = () => {
   return (
     <>
-    <Navbar/>
     <CartCard/>
     </>
   )
