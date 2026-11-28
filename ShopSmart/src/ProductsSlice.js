@@ -13,7 +13,11 @@ const initialState ={
     initialState,
     reducers:{
         setProducts:(state,action)=>{
-            state.items=action.payload;
+            if(state.skip===0){
+            state.items=action.payload;}
+            else{
+                state.items.push(...action.payload);
+            }
         },
         setSortBy:(state,action)=>{
             state.sortBy=action.payload;
@@ -25,6 +29,7 @@ const initialState ={
         setQuery:(state,action)=>{
             state.query=action.payload;
             state.skip=0;
+           
         },
         next:(state)=>{
             state.skip+=12;

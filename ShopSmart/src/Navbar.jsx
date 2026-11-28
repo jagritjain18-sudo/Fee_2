@@ -8,6 +8,7 @@ const CATEGORIES = [
   'fragrances',
   'furniture',
   'groceries',
+  'Mobile'
 ];
 
 const Navbar = () => {
